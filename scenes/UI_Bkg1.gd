@@ -8,13 +8,30 @@ var storia = "Beso mortal entre %s y %s. Desprecio total de %s."
 onready var PlayerText = $VBoxContainer/HBoxContainer/playerText
 onready var DisplayText = $VBoxContainer/guion1
 
-func _ready():
-	DisplayText.text = storia % nombres
+#func _ready():
+#	DisplayText.text = storia % nombres
 	
-func _on_TextureButton_pressed():
-	var newWords = $VBoxContainer/HBoxContainer/playerText.text
-	updateDisplayText(newWords)
+func _on_playerText_text_entered(new_text):
+	add_to_player_words(new_text)
 
-func updateDisplayText(words):
-	DisplayText.text = words
-	PlayerText.clear()
+func _on_TextureButton_pressed(new_words):
+	add_to_player_words(new_words)
+
+func add_to_player_words(new_words):
+	player_words.append(PlayerText.text)
+
+func is_story_done():
+	#nada corre debajo de return.
+	return player_words.size() == nombres.size()
+
+func check_player_words_length():
+	if is_story_done():
+		tell_story()
+	else:
+		prompt_player()
+
+func tell_story():
+	DisplayText.text = storia % nombres 
+
+func prompt_player():
+	DisplayText.text = "May I have "+nombres[player_words.size()] + "pofabó."
