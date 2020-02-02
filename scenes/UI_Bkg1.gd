@@ -10,6 +10,8 @@ onready var DisplayText = $VBoxContainer/guion1
 
 func _ready():
 	DisplayText.text = "Bienvenido, puto."
+	#Enfoca la caja de input.
+	PlayerText.grab_focus()
 	check_player_words_length()
 
 func add_to_player_words():
@@ -24,7 +26,7 @@ func is_story_done():
 
 func check_player_words_length():
 	if is_story_done():
-		tell_story()
+		end_game()
 	else:
 		prompt_player()
 
@@ -34,12 +36,20 @@ func tell_story():
 func prompt_player():
 	DisplayText.text += "Podrías darme un"+prompts[player_words.size()] + ",pofabó."
 
-
 func _on_TextureButton_pressed():
-	add_to_player_words()
 	print("Botón presionado")
-
-
+	if is_story_done():
+		print("Se acabó el juego.")
+		#get_tree toma toda la escena y podemos modificarla.
+		get_tree().reload_current_scene()
+	else:
+		add_to_player_words()
 
 func _on_playerText_text_entered(new_text):
 	add_to_player_words()
+
+func end_game():
+	#queue_free LIBERA el elemento de la memoria. Ésto permite optimizar el juego.
+	PlayerText.queue_free()
+	$VBoxContainer/HBoxContainer/btn_texto.text = "Ko"
+	tell_story()
