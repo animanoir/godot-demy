@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fuentes/minster/minster1.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/UI_Bkg1.gd" type="Script" id=2]
 [ext_resource path="res://imgs/oscar.png" type="Texture" id=3]
 [ext_resource path="res://imgs/dante.png" type="Texture" id=4]
+[ext_resource path="res://fuentes/vesta.otf" type="DynamicFontData" id=5]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/kk2.jpg-91e2fb9250a4a664ded10731d78ab9a9.stex"
 
 [sub_resource type="DynamicFont" id=2]
-size = 100
-font_data = ExtResource( 1 )
+size = 80
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
@@ -48,15 +49,14 @@ __meta__ = {
 }
 
 [node name="guion1" type="Label" parent="VBoxContainer"]
-margin_top = 105.0
+margin_top = 112.0
 margin_right = 760.0
-margin_bottom = 212.0
+margin_bottom = 206.0
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 2 )
-text = "Muerte"
+text = "txt"
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
