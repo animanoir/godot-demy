@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fuentes/minster/minster1.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/UI_Bkg1.gd" type="Script" id=2]
+[ext_resource path="res://imgs/oscar.png" type="Texture" id=3]
+[ext_resource path="res://imgs/dante.png" type="Texture" id=4]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/kk2.jpg-91e2fb9250a4a664ded10731d78ab9a9.stex"
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="UI_Bkg1" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bkg_texture" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -58.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="guion1" type="Label" parent="VBoxContainer"]
+margin_top = 105.0
+margin_right = 760.0
+margin_bottom = 212.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+text = "Muerte"
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 322.0
+margin_right = 760.0
+margin_bottom = 522.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playerText" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_right = 492.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+context_menu_enabled = false
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 496.0
+margin_right = 696.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_texto" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 700.0
+margin_top = 44.0
+margin_right = 760.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 3 )
+text = "OK
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/playerText" to="." method="_on_playerText_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
