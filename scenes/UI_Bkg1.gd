@@ -39,14 +39,16 @@ func _ready():
 func pick_current_story():
 	#randi() debe "modularse" con un número. Comienza desde 0; si queremos que
 	#comience desde 1, le sumamos un 1 al número.
+	var stories = get_from_json("StoryBook.json")
 	randomize() #randomize se aproxima al azar (para que no salga lo mismo 
+	current_story = stories[randi() % stories.size()]
 	#siempre }).
 #	current_story = template[ randi() % template.size() ]
 	#Obtiene cuántos hijos tiene un nodo.
-	var stories = $StoryBook.get_child_count()
-	var selected_story = randi() % stories
-	current_story.prompts = $StoryBook.get_child(selected_story).prompts
-	current_story.story = $StoryBook.get_child(selected_story).story
+#	var stories = $StoryBook.get_child_count()
+#	var selected_story = randi() % stories
+#	current_story.prompts = $StoryBook.get_child(selected_story).prompts
+#	current_story.story = $StoryBook.get_child(selected_story).story
 
 func add_to_player_words():
 	player_words.append(PlayerText.text)
@@ -87,3 +89,12 @@ func end_game():
 	PlayerText.queue_free()
 	$VBoxContainer/HBoxContainer/btn_texto.text = "Ko"
 	tell_story()
+
+func get_from_json(filename):
+	var jsonFile = File.new()
+	jsonFile.open(filename, File.READ)
+	var text = jsonFile.get_as_text()
+	#parse_json traduce json a texto normalito :v
+	var dataJson = parse_json(text)
+	jsonFile.close()
+	return dataJson

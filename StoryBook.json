@@ -1,0 +1,14 @@
+[
+  {
+    "prompts": ["un nombre", "un sustantivo", "un adverbio", "un adjetivo"],
+    "story": "Tu nombre es %s. Eres un %s. Coges %s. Vales %s."
+    },
+    {
+    "prompts": ["zebra", "lagarto", "pene", "vagina"],
+    "story": "Sexo %s anal y %s en %s. %s"
+    },
+    {
+    "prompts": ["cebolla", "artes", "pito", "México"],
+    "story": "Jajaja %s jojojo %s en %s. %s"
+    }
+]
