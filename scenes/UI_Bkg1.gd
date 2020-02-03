@@ -4,26 +4,26 @@ extends Control
 var player_words = []
 #Para usar un diccionario se usan llaves, en lugar de corchetes que son para 
 #arreglos.
-var template = [
-		{
-		#Diccionario 1
-		"prompts": ["un nombre", "un sustantivo", "un adverbio", "un adjetivo"],
-		"story": "Tu nombre es %s. Eres un %s. Coges %s. Vales %s."
-		},
-		#Diccionario 2
-		{
-		"prompts": ["zebra", "lagarto", "pene", "vagina"],
-		"story": "Sexo %s anal y %s en %s. %s"
-		},
-		#Diccionario 3
-		{
-		"prompts": ["cebolla", "artes", "pito", "México"],
-		"story": "Jajaja %s jojojo %s en %s. %s"
-		}
-	]
+
+#var template = [
+#		{
+#		#Diccionario 1
+#		"prompts": ["un nombre", "un sustantivo", "un adverbio", "un adjetivo"],
+#		"story": "Tu nombre es %s. Eres un %s. Coges %s. Vales %s."
+#		},
+#		#Diccionario 2
+#		{
+#		"prompts": ["zebra", "lagarto", "pene", "vagina"],
+#		"story": "Sexo %s anal y %s en %s. %s"
+#		},
+#		#Diccionario 3
+#		{
+#		"prompts": ["cebolla", "artes", "pito", "México"],
+#		"story": "Jajaja %s jojojo %s en %s. %s"
+#		}
+#	]
 	
-var current_story
-	
+var current_story = {}
 
 #onready sirve para avisarle a Godot que esta variable existirá más abajito.
 onready var PlayerText = $VBoxContainer/HBoxContainer/playerText
@@ -41,7 +41,12 @@ func pick_current_story():
 	#comience desde 1, le sumamos un 1 al número.
 	randomize() #randomize se aproxima al azar (para que no salga lo mismo 
 	#siempre }).
-	current_story = template[ randi() % template.size() ]
+#	current_story = template[ randi() % template.size() ]
+	#Obtiene cuántos hijos tiene un nodo.
+	var stories = $StoryBook.get_child_count()
+	var selected_story = randi() % stories
+	current_story.prompts = $StoryBook.get_child(selected_story).prompts
+	current_story.story = $StoryBook.get_child(selected_story).story
 
 func add_to_player_words():
 	player_words.append(PlayerText.text)

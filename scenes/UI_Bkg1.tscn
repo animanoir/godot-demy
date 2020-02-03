@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fuentes/minster/minster1.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/UI_Bkg1.gd" type="Script" id=2]
 [ext_resource path="res://imgs/oscar.png" type="Texture" id=3]
 [ext_resource path="res://imgs/dante.png" type="Texture" id=4]
 [ext_resource path="res://fuentes/vesta.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/Story0.gd" type="Script" id=6]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -100,5 +101,22 @@ valign = 1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="StoryBook" type="Node" parent="."]
+
+[node name="Story0" type="Node" parent="StoryBook"]
+script = ExtResource( 6 )
+prompts = PoolStringArray( "un nombre", "un sustantivo", "un adverbio", "un adjetivo" )
+story = "Tu nombre es %s. Eres un %s. Coges %s. Vales %s."
+
+[node name="Story1" type="Node" parent="StoryBook"]
+script = ExtResource( 6 )
+prompts = PoolStringArray( "un gato", "un perro", "un bebé", "un muerto" )
+story = "Sexo %s anal y %s en %s. %s"
+
+[node name="Story2" type="Node" parent="StoryBook"]
+script = ExtResource( 6 )
+prompts = PoolStringArray( "un amigo", "una novia", "un pene", "una vagina" )
+story = "Jajaja %s jojojo %s en %s. %s"
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/playerText" to="." method="_on_playerText_text_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
